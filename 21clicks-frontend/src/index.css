@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------- */
+/* Design tokens — every color, font, and radius used across the app      */
+/* lives here so the visual system stays in one place.                    */
+/* ---------------------------------------------------------------------- */
+@theme {
+  --color-bg-primary: #0b0b0f;
+  --color-bg-secondary: #141419;
+  --color-accent: #b86a4d;
+  --color-accent-hover: #d98a6a;
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #b8b8b8;
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-border-hover: rgba(184, 106, 77, 0.45);
+
+  --font-display: "Cinzel", "Times New Roman", serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-fantasy: "MedievalSharp", cursive;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  --radius-card: 1rem;
+  --radius-modal: 1.5rem;
+
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --shadow-glow: 0 0 24px rgba(184, 106, 77, 0.35);
+  --shadow-glow-strong: 0 0 40px rgba(184, 106, 77, 0.55);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Base layer                                                              */
+/* ---------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg-primary);
+}
+
+/* Visible, on-brand focus ring for keyboard navigation — never removed. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-hover);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Slim, dark, copper-tinted scrollbar so it never clashes with the theme. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(184, 106, 77, 0.5);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Reusable design-system utility classes                                  */
+/* ---------------------------------------------------------------------- */
+@layer components {
+  .glass-panel {
+    background-color: var(--color-glass);
+    border: 1px solid var(--color-glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .glass-panel-interactive {
+    transition:
+      border-color 250ms ease,
+      box-shadow 250ms ease,
+      transform 250ms ease;
+  }
+
+  .glass-panel-interactive:hover,
+  .glass-panel-interactive:focus-visible {
+    border-color: var(--color-glass-border-hover);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-accent {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-accent-strong {
+    box-shadow: var(--shadow-glow-strong);
+  }
+
+  .text-gradient-copper {
+    background: linear-gradient(135deg, var(--color-accent-hover) 0%, var(--color-accent) 60%, #8a4e36 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .video-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 11, 15, 0.7) 0%,
+      rgba(11, 11, 15, 0.55) 45%,
+      rgba(11, 11, 15, 0.85) 100%
+    );
+  }
+}

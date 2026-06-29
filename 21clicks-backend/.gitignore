@@ -1,0 +1,32 @@
+# Environment variables - contains passwords
+.env
+**/.env
+
+# Python virtual environment
+venv/
+**/venv/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Node modules - too large
+node_modules/
+**/node_modules/
+
+# Frontend build output
+dist/
+**/dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
